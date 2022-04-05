@@ -86,6 +86,7 @@ public partial class Form1 : Form
                     sizeChoice++;
                     dungeonSize = sizeOptions[sizeChoice].ds;
                     cellWidth = sizeOptions[sizeChoice].cw;
+                    erodeMode = false;
                 }
                 else
                 {
@@ -99,6 +100,7 @@ public partial class Form1 : Form
                     sizeChoice--;
                     dungeonSize = sizeOptions[sizeChoice].ds;
                     cellWidth = sizeOptions[sizeChoice].cw;
+                    erodeMode = false;
                 }
                 else
                 {
