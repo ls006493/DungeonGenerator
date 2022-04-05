@@ -19,6 +19,7 @@ public class Dungeon
 
     public Cell[,] Maze { get; set; }
     public int Size { get; set; }
+    public List<Cell> DeadEnds = new List<Cell>();
 
     public Dungeon(int size)
     {
@@ -48,13 +49,21 @@ public class Dungeon
             Cell c = fringe.Peek();
             visited[c.X, c.Y] = true;
 
-            List<Cell> unvisitedNeigbors = Neightbor(c)
+            // Neighbor open cell is 2 unit away
+            List<Cell> unvisitedNeigbors = Neightbor(c, 2) 
                 .Where(nb => !visited[nb.X, nb.Y])
                 .ToList();
             unvisitedNeigbors.Shuffle();
 
             if (unvisitedNeigbors.Count == 0)
             {
+                int wallNeighborCount = Neightbor(c, 1).Where(nb => nb.IsWall).ToList().Count;
+                if (wallNeighborCount == 3
+                    || (wallNeighborCount == 2 && OnEdge(c))
+                    || (wallNeighborCount == 1 && OnCorner(c)))
+                {
+                    DeadEnds.Add(c);
+                }
                 fringe.Pop();
                 continue;
             }
@@ -89,18 +98,18 @@ public class Dungeon
         }
     }
 
-    private List<Cell> Neightbor(Cell c)
+    private List<Cell> Neightbor(Cell c, int offset)
     {
         List<Cell> neighbor = new List<Cell>();
 
-        for (int i = -2; i <= 2; i += 2)
+        for (int i = -offset; i <= offset; i += offset)
         {
-            for (int j = -2; j <= 2; j += 2)
+            for (int j = -offset; j <= offset; j += offset)
             {
                 int nbX = c.X + i;
                 int nbY = c.Y + j;
                 int totalDiff = Math.Abs(i) + Math.Abs(j);
-                if ((i == 0 && j == 0) || totalDiff != 2
+                if ((i == 0 && j == 0) || totalDiff != offset
                     || nbX < 0 || nbX > Size - 1 || nbY < 0 || nbY > Size - 1)
                 {
                     continue;
@@ -109,6 +118,41 @@ public class Dungeon
             }
         }
         return neighbor;
+    }
+
+    // Modify fields DeadEnds in erosion
+    public void EordeDeadEnds(int iteration)
+    {
+        for (int i = 0; i < iteration; i++)
+        {
+            List<Cell> nextDeadEnds = new List<Cell>();
+            foreach (Cell deadEnd in DeadEnds)
+            {
+                List<Cell> prevOpenCells = Neightbor(deadEnd, 1)
+                    .Where(nb => !nb.IsWall)
+                    .ToList();
+                if (prevOpenCells.Count != 1) continue;
+
+                deadEnd.IsWall = true;
+                nextDeadEnds.Add(prevOpenCells[0]);
+            }
+            DeadEnds = nextDeadEnds;
+        }
+    }
+
+    // Determine whether a cell is on the edge i.e. At (top/ bot) row or (leftmost/ rightmost) col
+    private bool OnEdge(Cell c)
+    {
+        return c.X == 0 || c.X == Size - 1 || c.Y == 0 || c.Y == Size - 1;
+    }
+
+    // Determine whether a cell is on the corner i.e. At up left, up right, lower left, lower right corner
+    private bool OnCorner(Cell c)
+    {
+        return (c.X == 0 && c.Y == 0)
+            || (c.X == 0 && c.Y == Size - 1)
+            || (c.X == Size - 1 && c.Y == 0)
+            || (c.X == Size - 1 && c.Y == Size - 1);
     }
 }
 
