@@ -1,0 +1,17 @@
+C:\Dev\DungeonGenerator\bin\Debug\net6.0-windows\DungeonGenerator.exe
+C:\Dev\DungeonGenerator\bin\Debug\net6.0-windows\DungeonGenerator.dll
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.csproj.AssemblyReference.cache
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.Form1.resources
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.csproj.GenerateResource.cache
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.AssemblyInfoInputs.cache
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.AssemblyInfo.cs
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.csproj.CoreCompileInputs.cache
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.dll
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\refint\DungeonGenerator.dll
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.pdb
+C:\Dev\DungeonGenerator\bin\Debug\net6.0-windows\DungeonGenerator.deps.json
+C:\Dev\DungeonGenerator\bin\Debug\net6.0-windows\DungeonGenerator.runtimeconfig.json
+C:\Dev\DungeonGenerator\bin\Debug\net6.0-windows\DungeonGenerator.pdb
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\DungeonGenerator.genruntimeconfig.cache
+C:\Dev\DungeonGenerator\obj\Debug\net6.0-windows\ref\DungeonGenerator.dll
